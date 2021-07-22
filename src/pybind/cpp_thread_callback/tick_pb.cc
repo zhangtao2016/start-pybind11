@@ -17,7 +17,7 @@ PYBIND11_MODULE(tick_pb, m) {
     .def(py::init<TickEvent, std::int64_t, std::int64_t,
                   TickRunCallback, TickRunCallback>())
     .def_property_readonly("is_running", &Tick::IsRunning)
-    .def("start", &Tick::Start)
+    .def("start", &Tick::Start, "", py::arg("delay_ms") = 1)
     .def("stop", &Tick::Stop, "wait_life_over"_a = false)
     .def("get_time_start", &Tick::GetTimeStart)
     .def("set_tick_event", [](Tick &self, const TickEvent &tick_event) {
